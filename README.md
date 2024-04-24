@@ -4,7 +4,7 @@ This repository contains code for creating a REST API using Express. Follow the 
 
 ### Setup Steps
 
-1. **Install Node.js**: If you haven't already, download and install Node.js from [nodejs.org](https://nodejs.org/).
+1. **Install Node.js**: If you haven't already, download and install Node.js from [nodejs.org](https://nodejs.org/). 
 
 2. **Fetch the GitHub Repository**: Clone or download this GitHub repository to your local machine.
 
@@ -16,6 +16,7 @@ This repository contains code for creating a REST API using Express. Follow the 
 
     ```bash
     cd REST-API-Project
+    install npm
     npm install
     ```
 
