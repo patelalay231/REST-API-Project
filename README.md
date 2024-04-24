@@ -15,7 +15,7 @@ This repository contains code for creating a REST API using Express. Follow the 
 3. **Install npm Dependencies**: Navigate to the project directory and install the required npm dependencies.
 
     ```bash
-    cd BreadcrumbsREST-API-Project
+    cd REST-API-Project
     npm install
     ```
 
