@@ -1,0 +1,21 @@
+REST API - JSON
+
+GET /users - HTML Document render --done
+GET /api/users - List all users as json --done
+
+
+// using Dynamic path routs
+GET /api/users/:id
+
+GET /api/users/1 - Get the user with id 1 --done
+
+// for patch delete will use postman
+
+POST /api/users - create new user
+
+PATCH /api/users/1 - Edit the user with ID 1
+
+DELETE /api/users/1 - Delete the user with ID 1
+
+
+we will user mockaroo for the generating fake data.
