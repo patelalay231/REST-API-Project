@@ -17,7 +17,6 @@ This repository contains code for creating a REST API using Express. Follow the 
     ```bash
     cd REST-API-Project
     install npm
-    npm init
     npm install
     ```
 
