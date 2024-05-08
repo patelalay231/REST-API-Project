@@ -1,4 +1,15 @@
-REST API - JSON
+creating REST API using express
+
+follow this steps to setup..
+
+
+1. Install node.js & Fetch the github repo
+2. intsll npm
+3. npm install
+4. npm start 
+
+
+
 
 GET /users - HTML Document render --done
 GET /api/users - List all users as json --done
@@ -18,4 +29,23 @@ PATCH /api/users/1 - Edit the user with ID 1
 DELETE /api/users/1 - Delete the user with ID 1
 
 
+then we will going to create cookie, but  
+storing data(in form of cookie) on client server is not good idea.
+so I will session to store data on server side.
+
+// api/users/added - to see requests sent by user
+// api/users/adding - to sent the requests 
+
+created feture - to use apis user should be authenticate first
+
+we are also creating authentication route to signup and signin
+/auth/login - to login
+/auth/register - to register
+
+we are encrypting password by using the bcrypt module. once hasing of the password done so we cant get back
+users normal password so it is very useful to secure our data. 
+
+after learning basics I have implemented passport.js in my project for authenticate.
+
 we will user mockaroo for the generating fake data.
+https://www.mockaroo.com/

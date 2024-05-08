@@ -1,95 +1,36 @@
 const express = require("express");
-const users = require("./data.json");
-const path = require('path');
-const fs = require("fs");
-const { error } = require("console");
+const cookieParse = require("cookie-parser");
+const session = require("express-session");
+const user_api = require('./routes/user_api');
+const auth = require('./routes/auth');
 
 const app = express();
-const PORT = 8001;
 
+// deciding port
+const PORT = 8000;
+
+// intialize database
+require('./dbs/manage');
+
+
+//middleware
+
+//to encode the body
 app.use(express.urlencoded({extended: false}));
-//Routes
 
-// display users 
-app.get('/users',(req,res) =>{
-    const html = `
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>FIRST NAME</th>
-                <th>LAST NAME</th>
-                <th>EMAIL</th>
-                <th>GENDER</th>
-                <th>ID_ADDRESS</th>
-            </tr>
-        </thead>
-        <tbody>
-                ${users.map(user => 
-                `
-                <tr>
-                    <td>${user.id}</td>
-                    <td>${user.first_name}</td>
-                    <td>${user.last_name}</td>
-                    <td>${user.email}</td>
-                    <td>${user.gender}</td>
-                    <td>${user.ip_address}</td>
-                </tr>
-                `).join("")}
-        </tbody>
-    </table>
-    `;
-    res.send(html);
-})
+//to encode the cookie
+app.use(cookieParse());
 
-// users list - json
-app.get('/api/users',(req,res) =>{
-    return res.json(users);
-})
+// to parse the session
+app.use(session({
+    secret : 'APDWQRW4VSDNF4$SFS%29',
+    resave : false,
+    saveUninitialized : false,
+}));
 
-// fetching particular user
-app.get('/api/users/:id',(req,res)=>{
-    const id = Number(req.params.id);
-    const user = users.find(user => user.id === id);
-    return res.json(user);
-})
+// before using any api user should be logged
 
-app.post('/api/users',(req,res)=>{
-    const body = req.body;
-    users.push({...body,id:users.length+1});
-    fs.writeFile('./data.json',JSON.stringify(users),(err,data)=>{
-        return res.json({status:"Success",id:users.length});
-    })
-    
-})
-
-app.patch('/api/users/:id',(req,res)=>{
-    const body = req.body;
-    const id = Number(req.params.id);
-    const user = users.find(user => user.id === id);
-    user.first_name = body.first_name;
-    user.last_name = body.last_name;
-    user.gender = body.gender;
-    user.email = body.email;
-    user.ip_address = req.ip;
-    console.log(req);
-    fs.writeFile('./data.json',JSON.stringify(users),(err,data)=>{
-        return res.json({status:"Success"});
-    })
-})
-
-app.delete('/api/users/:id',(req,res)=>{
-    const id = Number(req.params.id);
-    const index = users.findIndex(user => (user.id === id));
-    if (index !== -1) {
-        users.splice(index, 1);
-        fs.writeFile('./data.json',JSON.stringify(users),(err,data)=>{
-            return res.json({status:"Success"});
-        })
-    } else {
-        return res.json({error:"User not found"});
-    }
-})
-
+app.use('/api/users', user_api);
+app.use('/auth',auth);
 
 app.listen(PORT,() => console.log(`server started at port ${PORT}`));
