@@ -3,7 +3,8 @@ const cookieParse = require("cookie-parser");
 const session = require("express-session");
 const user_api = require('./routes/user_api');
 const auth = require('./routes/auth');
-
+const passport = require('passport');
+const MongoStore = require('connect-mongo');
 const app = express();
 
 // deciding port
@@ -11,7 +12,6 @@ const PORT = 8000;
 
 // intialize database
 require('./dbs/manage');
-
 
 //middleware
 
@@ -26,8 +26,16 @@ app.use(session({
     secret : 'APDWQRW4VSDNF4$SFS%29',
     resave : false,
     saveUninitialized : false,
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost:27017/',
+      }),
 }));
 
+
+// intialize passport
+require('./strategies/local');
+app.use(passport.initialize());
+app.use(passport.session());
 // before using any api user should be logged
 
 app.use('/api/users', user_api);

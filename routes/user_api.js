@@ -6,7 +6,7 @@ const fs = require("fs");
 app = express();
 
 app.use((req,res,next)=>{
-    if(req.session.user) next();
+    if(req.user) next();
     else res.send("Please login to the system!")
 })
 
