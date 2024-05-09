@@ -45,6 +45,8 @@ Session management is employed to store user authentication data securely on the
 **Note:**
 Storing data in cookies on the client-side is avoided for security reasons, and instead, session management is utilized.
 
+later on I have used the passport.js to store the session ID in Database.
+
 Feel free to explore and contribute to this project. For any issues or suggestions, please open an issue on GitHub. 
 
 **Resources:**
