@@ -33,7 +33,9 @@ app.use(session({
 
 
 // intialize passport
-require('./strategies/local');
+
+// require('./strategies/local');
+require('./strategies/discord');
 app.use(passport.initialize());
 app.use(passport.session());
 // before using any api user should be logged

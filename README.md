@@ -47,6 +47,8 @@ Storing data in cookies on the client-side is avoided for security reasons, and 
 
 later on I have used the passport.js to store the session ID in Database.
 
+Then I have created OAuth2 with discord.
+
 Feel free to explore and contribute to this project. For any issues or suggestions, please open an issue on GitHub. 
 
 **Resources:**

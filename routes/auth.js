@@ -35,5 +35,14 @@ router.post('/register',async (req,res)=>{
     return res.send({msg:"User account created!"});
 })
 
+router.get('/discord',passport.authenticate('discord'),(req,res)=>{
+    res.sendStatus(200);
+});
+
+router.get('/discord/redirect',passport.authenticate('discord'),(req,res)=>{
+    res.sendStatus(200);
+});
+
+
 // export the auth module
 module.exports = router;
