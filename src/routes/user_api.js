@@ -5,6 +5,7 @@ const fs = require("fs");
 
 app = express();
 
+// before using any api user should be logged
 app.use((req,res,next)=>{
     if(req.user) next();
     else res.send("Please login to the system!")

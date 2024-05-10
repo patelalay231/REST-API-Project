@@ -34,11 +34,15 @@ app.use(session({
 
 // intialize passport
 
-// require('./strategies/local');
+// remove comment from strategy you want to use
 require('./strategies/discord');
+require('./strategies/local');
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
-// before using any api user should be logged
+
 
 app.use('/api/users', user_api);
 app.use('/auth',auth);

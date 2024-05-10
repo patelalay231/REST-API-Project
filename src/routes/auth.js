@@ -4,6 +4,7 @@ const passport = require('passport');
 const User = require("../dbs/schema/user_schema");
 const router = express();
 const { passwordEncryption, comparePassword } = require('../utils/helper');
+const { authRegisterController } = require('../controllers/auth');
 
 // login in
 // router.post('/login',async (req,res) => {
@@ -23,17 +24,7 @@ router.post('/login',passport.authenticate('local'),(req,res)=>{
 })
 
 //to register user
-router.post('/register',async (req,res)=>{
-    let {password,email} = req.body;
-    const userDB = await User.findOne({email});
-    if(userDB){
-        return res.status(401).send({msg:"User account already exist"});
-    }
-    password = passwordEncryption(password);
-    const newUser = await User.create({email,password});
-    newUser.save();
-    return res.send({msg:"User account created!"});
-})
+router.post('/register', authRegisterController)
 
 router.get('/discord',passport.authenticate('discord'),(req,res)=>{
     res.sendStatus(200);

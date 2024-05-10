@@ -1,8 +1,8 @@
-**Creating REST API using Express**
+# Creating REST API using Express
 
 This project is a simple REST API built using Express. It provides endpoints for managing users including creating, reading, updating, and deleting user data. Additionally, it incorporates authentication features using sessions and Passport.js.
 
-**Setup Instructions:**
+## Setup Instructions:
 
 1. **Install Node.js**: If you haven't already, install Node.js from [nodejs.org](https://nodejs.org/).
    
@@ -18,7 +18,7 @@ This project is a simple REST API built using Express. It provides endpoints for
    npm start
    ```
 
-**Endpoints:**
+## Endpoints:
 
 - **GET /users** - Renders an HTML document.
 - **GET /api/users** - Returns a list of all users in JSON format.
@@ -27,31 +27,34 @@ This project is a simple REST API built using Express. It provides endpoints for
 - **PATCH /api/users/:id** - Edits the user with the specified ID.
 - **DELETE /api/users/:id** - Deletes the user with the specified ID.
 
-**Authentication:**
+## Authentication:
 
 - **/auth/login** - Endpoint for user login.
 - **/auth/register** - Endpoint for user registration.
 
+## OAuth2 Integration:
+
+- **/auth/discord/** - Endpoint for Discord redirection to sign in.
+- **/auth/discord/redirect** - Endpoint for Discord redirection to sign in.
+
 User passwords are encrypted using the bcrypt module to enhance security.
 
-**Session Management:**
+## Session Management:
 
 Session management is employed to store user authentication data securely on the server-side rather than in cookies.
 
-**Additional Features:**
+## Additional Features:
 
 - **Mockaroo Integration**: Fake data is generated using Mockaroo for testing purposes.
 
-**Note:**
-Storing data in cookies on the client-side is avoided for security reasons, and instead, session management is utilized.
+## Testing:
 
-later on I have used the passport.js to store the session ID in Database.
-
-Then I have created OAuth2 with discord.
+Unit testing has been implemented for the Discord strategy and the endpoint - `auth/register` using Jest. Contributions to unit testing other functions are welcome.
 
 Feel free to explore and contribute to this project. For any issues or suggestions, please open an issue on GitHub. 
 
-**Resources:**
+## Resources:
+
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
 - [Mockaroo](https://www.mockaroo.com/)
